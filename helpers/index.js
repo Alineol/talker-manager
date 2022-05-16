@@ -6,9 +6,20 @@ const getTalker = () => {
   const data = JSON.parse(file);
   return data;
 };
+// referência: https://www.webtutorial.com.br/funcao-para-gerar-uma-string-aleatoria-random-com-caracteres-especificos-em-javascript/
+
+const generateToken = (size) => {
+  let randomString = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < size; i += 1) {
+    randomString += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return randomString;
+};
 
 module.exports = ({
   getTalker,
+  generateToken,
 });
 
 // fs.readFile(nomeDoArquivo, 'utf8')
