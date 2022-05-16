@@ -1,5 +1,6 @@
 const express = require('express');
 const { getTalker, generateToken } = require('../helpers/index');
+const { loginCheck } = require('../middlewares/index');
 // const data = require('../talker.json');
 
 // const middlerwares = require('../middlewares');
@@ -25,14 +26,8 @@ if (!result) {
 return res.status(200).json(result);
 });
 
-routes.post('/login', (req, res) => {
-  // const { email, password } = req.body;
-  // console.log(email, password);
-  // if (!email || password) {
-  //   return res.status(400).json({ message: 'lalalala' });
-  // }
+routes.post('/login', loginCheck, (req, res) => {
   const token = generateToken(16);
-  console.log(token);
   return res.status(200).json({ token });
 });
 
