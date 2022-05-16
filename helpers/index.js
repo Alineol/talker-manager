@@ -17,9 +17,16 @@ const generateToken = (size) => {
   return randomString;
 };
 
+const deleteTalker = async (id) => {
+  const data = await getTalker();
+  const filtered = data.filter((talker) => talker.id !== Number(id));
+  fs.writeFileSync('.talker.json', JSON.stringify(filtered));
+};
+
 module.exports = ({
   getTalker,
   generateToken,
+  deleteTalker,
 });
 
 // fs.readFile(nomeDoArquivo, 'utf8')
