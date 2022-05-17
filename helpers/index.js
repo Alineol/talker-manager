@@ -41,14 +41,10 @@ const editTalker = async (talkerId, reqBody) => {
   return result;
 };
 
-editTalker(1, {
-  name: 'Danielle Santos',
-  age: 56,
-  talk: {
-    watchedAt: '22/10/2019',
-    rate: 5,
-  },
-});
+const findTalker = async (query) => {
+  const data = await getTalker();
+  return data.filter((talker) => talker.name.toLowerCase().includes(query.toLowerCase()));
+};
 
 module.exports = ({
   getTalker,
@@ -56,6 +52,7 @@ module.exports = ({
   deleteTalker,
   addTalker,
   editTalker,
+  findTalker,
 });
 
 // fs.readFile(nomeDoArquivo, 'utf8')
