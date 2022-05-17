@@ -23,10 +23,20 @@ const deleteTalker = async (id) => {
   fs.writeFileSync('.talker.json', JSON.stringify(filtered));
 };
 
+const addTalker = async (newTalker) => {
+  const data = await getTalker();
+  const id = Math.max(...data.map((talker) => talker.id)) + 1;
+  const { name, age, talk } = newTalker;
+  const result = { name, age, id, talk };
+    fs.writeFileSync('./talker.json', JSON.stringify([...data, result]));
+  return result;
+};
+
 module.exports = ({
   getTalker,
   generateToken,
   deleteTalker,
+  addTalker,
 });
 
 // fs.readFile(nomeDoArquivo, 'utf8')
