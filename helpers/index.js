@@ -36,7 +36,7 @@ const editTalker = async (talkerId, reqBody) => {
   const data = await getTalker();
   const filtered = data.filter((talker) => talker.id !== Number(talkerId));
   const { name, age, talk } = reqBody;
-  const result = { name, age, id: talkerId, talk };
+  const result = { name, age, id: Number(talkerId), talk };
   fs.writeFileSync('./talker.json', JSON.stringify([...filtered, result]));
   return result;
 };
@@ -55,6 +55,7 @@ module.exports = ({
   generateToken,
   deleteTalker,
   addTalker,
+  editTalker,
 });
 
 // fs.readFile(nomeDoArquivo, 'utf8')
