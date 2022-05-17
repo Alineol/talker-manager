@@ -33,7 +33,8 @@ routes.post('/login', loginCheck, (req, res) => {
   return res.status(200).json({ token });
 });
 
-routes.post('/talker', validateToken, validateAge, validateName, validateTalk, validateTalkDateRate, async (req, res) => {
+routes.post('/talker', validateToken, validateAge, validateName, 
+validateTalk, validateTalkDateRate, async (req, res) => {
   const talker = await addTalker(req.body);
   console.log(talker);
   return res.status(201).json(talker);
