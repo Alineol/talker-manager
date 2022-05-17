@@ -20,7 +20,7 @@ const generateToken = (size) => {
 const deleteTalker = async (id) => {
   const data = await getTalker();
   const filtered = data.filter((talker) => talker.id !== Number(id));
-  fs.writeFileSync('.talker.json', JSON.stringify(filtered));
+  fs.writeFileSync('./talker.json', JSON.stringify(filtered));
 };
 
 const addTalker = async (newTalker) => {
