@@ -1,8 +1,8 @@
 const express = require('express');
-const { getTalker, generateToken, deleteTalker, addTalker } = require('../helpers/index');
+const { getTalker, generateToken, deleteTalker, addTalker, 
+  editTalker } = require('../helpers/index');
 const { loginCheck, validateToken, validateAge, validateName, 
-  validateTalk, validateTalkDateRate, 
-  validatetalkPropertiesLegnth } = require('../middlewares/index');
+  validateTalk, validateTalkDateRate } = require('../middlewares/index');
 
 const routes = express.Router();
 
@@ -30,10 +30,16 @@ routes.post('/login', loginCheck, (req, res) => {
 });
 
 routes.post('/talker', validateToken, validateAge, validateName, 
-validateTalk, validatetalkPropertiesLegnth, validateTalkDateRate, async (req, res) => {
+validateTalk, validateTalkDateRate, async (req, res) => {
   const talker = await addTalker(req.body);
-  console.log(talker);
   return res.status(201).json(talker);
+});
+
+routes.put('/talker/:id', validateToken, validateAge, validateName, 
+validateTalk, validateTalkDateRate, async (req, res) => {
+  const { id } = req.params;
+  const talker = await editTalker(id, req.body);
+  return res.status(200).json(talker);
 });
 
 routes.delete('/talker/:id', validateToken, async (req, res) => {
