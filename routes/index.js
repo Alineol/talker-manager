@@ -1,12 +1,8 @@
 const express = require('express');
 const { getTalker, generateToken, deleteTalker, addTalker } = require('../helpers/index');
 const { loginCheck, validateToken, validateAge, validateName, 
-  
-  validateTalk, 
-  validateTalkDateRate } = require('../middlewares/index');
-// const data = require('../talker.json');
-
-// const middlerwares = require('../middlewares');
+  validateTalk, validateTalkDateRate, 
+  validatetalkPropertiesLegnth } = require('../middlewares/index');
 
 const routes = express.Router();
 
@@ -34,7 +30,7 @@ routes.post('/login', loginCheck, (req, res) => {
 });
 
 routes.post('/talker', validateToken, validateAge, validateName, 
-validateTalk, validateTalkDateRate, async (req, res) => {
+validateTalk, validatetalkPropertiesLegnth, validateTalkDateRate, async (req, res) => {
   const talker = await addTalker(req.body);
   console.log(talker);
   return res.status(201).json(talker);
