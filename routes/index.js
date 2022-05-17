@@ -1,6 +1,9 @@
 const express = require('express');
-const { getTalker, generateToken, deleteTalker } = require('../helpers/index');
-const { loginCheck, validateToken } = require('../middlewares/index');
+const { getTalker, generateToken, deleteTalker, addTalker } = require('../helpers/index');
+const { loginCheck, validateToken, validateAge, validateName, 
+  
+  validateTalk, 
+  validateTalkDateRate } = require('../middlewares/index');
 // const data = require('../talker.json');
 
 // const middlerwares = require('../middlewares');
@@ -28,6 +31,12 @@ return res.status(200).json(result);
 routes.post('/login', loginCheck, (req, res) => {
   const token = generateToken(16);
   return res.status(200).json({ token });
+});
+
+routes.post('/talker', validateToken, validateAge, validateName, validateTalk, validateTalkDateRate, async (req, res) => {
+  const talker = await addTalker(req.body);
+  console.log(talker);
+  return res.status(201).json(talker);
 });
 
 routes.delete('/talker/:id', validateToken, async (req, res) => {
