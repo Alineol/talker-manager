@@ -32,6 +32,24 @@ const addTalker = async (newTalker) => {
   return result;
 };
 
+const editTalker = async (talkerId, reqBody) => {
+  const data = await getTalker();
+  const filtered = data.filter((talker) => talker.id !== Number(talkerId));
+  const { name, age, talk } = reqBody;
+  const result = { name, age, id: talkerId, talk };
+  fs.writeFileSync('./talker.json', JSON.stringify([...filtered, result]));
+  return result;
+};
+
+editTalker(1, {
+  name: 'Danielle Santos',
+  age: 56,
+  talk: {
+    watchedAt: '22/10/2019',
+    rate: 5,
+  },
+});
+
 module.exports = ({
   getTalker,
   generateToken,
