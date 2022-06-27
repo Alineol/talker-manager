@@ -29,9 +29,6 @@ O Talker Manager é uma API de um CRUD (**C**reate, **R**ead, **U**pdate e **D**
 
 * Express
 
-Para iniciar a aplicação: `npm run dev
-
-
 # Comandos para rodar o projeto na sua máquina
 
 <details>
@@ -48,6 +45,8 @@ Para iniciar a aplicação: `npm run dev
 
   > Instale as dependências [**Caso existam**] com `npm install`
   
+  > Para iniciar a aplicação: `npm run dev
+  
   ## Sem Docker
   
   > Instale as dependências [**Caso existam**] com `npm install`
@@ -57,7 +56,7 @@ Para iniciar a aplicação: `npm run dev
   2. O avaliador espera que a versão do `node` utilizada seja a 16.
   
   
-Para iniciar a aplicação: `npm run dev`
+ > Para iniciar a aplicação: `npm run dev`
 
 </details>
 
